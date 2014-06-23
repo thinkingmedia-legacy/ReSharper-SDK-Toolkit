@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ReSharperToolKit</RootNamespace>
     <AssemblyName>ReSharperToolKit</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,9 +41,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Actions\ClassActionBase.cs" />
+    <Compile Include="Actions\SelectedClassWrapper.cs" />
+    <Compile Include="Editors\iClassEditor.cs" />
+    <Compile Include="Editors\Impl\ClassEditor.cs" />
+    <Compile Include="Editors\Impl\SourceEditor.cs" />
+    <Compile Include="Editors\iSourceEditor.cs" />
+    <Compile Include="Exceptions\IsFalseException.cs" />
+    <Compile Include="Exceptions\ProjectNotFoundException.cs" />
+    <Compile Include="Exceptions\ServiceNotFoundException.cs" />
+    <Compile Include="Exceptions\ThrowIf.cs" />
+    <Compile Include="Modules\Factories\iElementEditorFactory.cs" />
+    <Compile Include="Modules\Factories\Impl\ElementEditorFactory.cs" />
+    <Compile Include="Modules\Locator.cs" />
+    <Compile Include="Modules\Services\Impl\ProjectService.cs" />
+    <Compile Include="Modules\Services\Impl\StandardNamingPattern.cs" />
+    <Compile Include="Modules\Services\Impl\TreeNodeService.cs" />
+    <Compile Include="Modules\Services\iNamingService.cs" />
+    <Compile Include="Modules\Services\iProjectService.cs" />
+    <Compile Include="Modules\Services\iTreeNodeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

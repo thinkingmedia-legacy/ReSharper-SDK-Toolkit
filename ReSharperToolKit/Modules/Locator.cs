@@ -49,15 +49,9 @@ namespace ReSharperToolKit.Modules
         private void Configure()
         {
             Put<iNamingService>(new StandardNamingPattern());
-            Put<iAppTheme>(new AppTheme());
             Put<iTreeNodeService>(new TreeNodeService());
-            Put<iTestProjectService>(new TestProjectService(Get<iNamingService>()));
             Put<iProjectService>(new ProjectService());
 
-            Put<iUnitTestService>(new UnitTestService(
-                Get<iTestProjectService>(),
-                Get<iProjectService>(),
-                Get<iNamingService>()));
 
             Put<iElementEditorFactory>(new ElementEditorFactory());
         }
@@ -65,14 +59,14 @@ namespace ReSharperToolKit.Modules
         /// <summary>
         /// Adds an object as a service. Will fail is service already exists for that type.
         /// </summary>
-        private void Put<T>([NotNull] T pService) where T : class
+        public static void Put<T>([NotNull] T pService) where T : class
         {
             if (pService == null)
             {
                 throw new ArgumentNullException("pService");
             }
 
-            _services.Add(typeof (T), pService);
+            Instance._services.Add(typeof (T), pService);
         }
 
         /// <summary>

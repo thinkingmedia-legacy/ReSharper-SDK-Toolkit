@@ -19,21 +19,6 @@ namespace ReSharperToolKit.Actions
         protected readonly ICSharpContextActionDataProvider Provider;
 
         /// <summary>
-        /// The current theme
-        /// </summary>
-        protected readonly iAppTheme Theme;
-
-        /// <summary>
-        /// Services related to the unit test.
-        /// </summary>
-        protected readonly iUnitTestService UnitTestService;
-
-        /// <summary>
-        /// Services related to the target test project.
-        /// </summary>
-        private readonly iTestProjectService _testProjectService;
-
-        /// <summary>
         /// Services related to the node tree.
         /// </summary>
         private readonly iTreeNodeService _treeNodeService;
@@ -51,18 +36,13 @@ namespace ReSharperToolKit.Actions
             Provider = pProvider;
             SelectedClass = null;
 
-            Theme = Locator.Get<iAppTheme>();
-            UnitTestService = Locator.Get<iUnitTestService>();
-
-            _testProjectService = Locator.Get<iTestProjectService>();
             _treeNodeService = Locator.Get<iTreeNodeService>();
         }
 
         /// <summary>
         /// Ask the derived type if this action can be performed on this class.
         /// </summary>
-        protected abstract bool isAvailableForClass(IUserDataHolder pCache, IProject pTestProject,
-                                                    IClassDeclaration pClass);
+        protected abstract bool isAvailableForClass(IUserDataHolder pCache);
 
         /// <summary>
         /// Checks if a unit test exists for the current class declaration.
@@ -73,13 +53,12 @@ namespace ReSharperToolKit.Actions
             {
                 ThrowIf.Null(Provider);
                 ITreeNode node = ThrowIf.Null(Provider.SelectedElement);
-                IProject testProejct = _testProjectService.getProject(Provider.Project);
                 CSharpElementFactory factory = CSharpElementFactory.GetInstance(Provider.PsiModule);
 
                 IClassDeclaration decl = ThrowIf.Null(_treeNodeService.isClassIdentifier(node));
                 SelectedClass = new SelectedClassWrapper(factory, Provider.PsiFile, decl);
 
-                ThrowIf.False(isAvailableForClass(pCache, testProejct, decl));
+                ThrowIf.False(isAvailableForClass(pCache));
                 return true;
             }
             catch (IsFalseException)
