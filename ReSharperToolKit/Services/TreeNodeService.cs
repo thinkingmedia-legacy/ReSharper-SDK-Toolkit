@@ -5,9 +5,9 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
 
-namespace ReSharperToolKit.Modules.Services.Impl
+namespace ReSharperToolKit.Services
 {
-    public class TreeNodeService : iTreeNodeService
+    public class TreeNodeService
     {
         /// <summary>
         /// Checks if the node is an identifier for a class, and returns the declaration if it is.

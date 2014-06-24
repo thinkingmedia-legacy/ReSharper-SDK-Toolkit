@@ -43,24 +43,15 @@
   <ItemGroup>
     <Compile Include="Actions\ClassActionBase.cs" />
     <Compile Include="Actions\SelectedClassWrapper.cs" />
-    <Compile Include="Editors\iClassEditor.cs" />
-    <Compile Include="Editors\Impl\ClassEditor.cs" />
-    <Compile Include="Editors\Impl\SourceEditor.cs" />
-    <Compile Include="Editors\iSourceEditor.cs" />
+    <Compile Include="Editors\ClassEditor.cs" />
+    <Compile Include="Editors\SourceEditor.cs" />
     <Compile Include="Exceptions\IsFalseException.cs" />
     <Compile Include="Exceptions\ProjectNotFoundException.cs" />
     <Compile Include="Exceptions\ServiceNotFoundException.cs" />
     <Compile Include="Exceptions\ThrowIf.cs" />
-    <Compile Include="Modules\Factories\iElementEditorFactory.cs" />
-    <Compile Include="Modules\Factories\Impl\ElementEditorFactory.cs" />
-    <Compile Include="Modules\Locator.cs" />
-    <Compile Include="Modules\LocatorConfigAttribute.cs" />
-    <Compile Include="Modules\Services\Impl\ProjectService.cs" />
-    <Compile Include="Modules\Services\Impl\StandardNamingPattern.cs" />
-    <Compile Include="Modules\Services\Impl\TreeNodeService.cs" />
-    <Compile Include="Modules\Services\iNamingService.cs" />
-    <Compile Include="Modules\Services\iProjectService.cs" />
-    <Compile Include="Modules\Services\iTreeNodeService.cs" />
+    <Compile Include="Services\ProjectService.cs" />
+    <Compile Include="Services\StandardNamingPattern.cs" />
+    <Compile Include="Services\TreeNodeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

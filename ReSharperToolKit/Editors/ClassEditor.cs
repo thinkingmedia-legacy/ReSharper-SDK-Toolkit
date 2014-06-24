@@ -3,9 +3,9 @@ using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
-namespace ReSharperToolKit.Editors.Impl
+namespace ReSharperToolKit.Editors
 {
-    public class ClassEditor : iClassEditor
+    public class ClassEditor
     {
         /// <summary>
         /// The class being edited.

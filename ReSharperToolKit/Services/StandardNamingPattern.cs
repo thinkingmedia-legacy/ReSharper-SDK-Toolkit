@@ -1,9 +1,9 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace ReSharperToolKit.Modules.Services.Impl
+namespace ReSharperToolKit.Services
 {
-    public class StandardNamingPattern : iNamingService
+    public class StandardNamingPattern
     {
         /// <summary>
         /// Converts a namespace for a class into the namespace for the unit test.

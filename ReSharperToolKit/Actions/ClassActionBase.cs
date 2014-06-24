@@ -6,8 +6,7 @@ using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Tree;
 using JetBrains.Util;
 using ReSharperToolKit.Exceptions;
-using ReSharperToolKit.Modules;
-using ReSharperToolKit.Modules.Services;
+using ReSharperToolKit.Services;
 
 namespace ReSharperToolKit.Actions
 {
@@ -21,7 +20,7 @@ namespace ReSharperToolKit.Actions
         /// <summary>
         /// Services related to the node tree.
         /// </summary>
-        private readonly iTreeNodeService _treeNodeService;
+        private readonly TreeNodeService _treeNodeService;
 
         /// <summary>
         /// The currently selected class.
@@ -36,7 +35,7 @@ namespace ReSharperToolKit.Actions
             Provider = pProvider;
             SelectedClass = null;
 
-            _treeNodeService = Locator.Get<iTreeNodeService>();
+            _treeNodeService = new TreeNodeService();
         }
 
         /// <summary>

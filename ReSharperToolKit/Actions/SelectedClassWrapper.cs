@@ -3,9 +3,6 @@ using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using ReSharperToolKit.Editors;
-using ReSharperToolKit.Modules;
-using ReSharperToolKit.Modules.Factories;
-using ReSharperToolKit.Modules.Services;
 
 namespace ReSharperToolKit.Actions
 {
@@ -17,7 +14,7 @@ namespace ReSharperToolKit.Actions
         /// <summary>
         /// Used to edit the current class.
         /// </summary>
-        public readonly iClassEditor ClassEditor;
+        public readonly ClassEditor ClassEditor;
 
         /// <summary>
         /// The identifier for the current class.
@@ -32,12 +29,7 @@ namespace ReSharperToolKit.Actions
         /// <summary>
         /// Used to edit the C source file.
         /// </summary>
-        public readonly iSourceEditor SourceEditor;
-
-        /// <summary>
-        /// The identifier for the unit test of the class.
-        /// </summary>
-        public readonly string UnitTestName;
+        public readonly SourceEditor SourceEditor;
 
         /// <summary>
         /// Constructor
@@ -61,14 +53,10 @@ namespace ReSharperToolKit.Actions
 
             Decl = pDecl;
 
-            iNamingService namingService = Locator.Get<iNamingService>();
-            iElementEditorFactory factory = Locator.Get<iElementEditorFactory>();
-
             ClassName = Decl.NameIdentifier.Name;
-            UnitTestName = namingService.ClassNameToTest(ClassName);
 
-            ClassEditor = factory.CreateClassEditor(pFactory, Decl);
-            SourceEditor = factory.CreateSourceEditor(pFactory, pFile);
+            ClassEditor = new ClassEditor(pFactory, Decl);
+            SourceEditor = new SourceEditor(pFactory, pFile);
         }
     }
 }
