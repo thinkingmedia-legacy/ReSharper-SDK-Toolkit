@@ -54,6 +54,7 @@
     <Compile Include="Modules\Factories\iElementEditorFactory.cs" />
     <Compile Include="Modules\Factories\Impl\ElementEditorFactory.cs" />
     <Compile Include="Modules\Locator.cs" />
+    <Compile Include="Modules\LocatorConfigAttribute.cs" />
     <Compile Include="Modules\Services\Impl\ProjectService.cs" />
     <Compile Include="Modules\Services\Impl\StandardNamingPattern.cs" />
     <Compile Include="Modules\Services\Impl\TreeNodeService.cs" />

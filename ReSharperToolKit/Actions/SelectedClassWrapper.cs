@@ -1,4 +1,6 @@
-﻿using JetBrains.ReSharper.Psi.CSharp;
+﻿using System;
+using JetBrains.Annotations;
+using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using ReSharperToolKit.Editors;
 using ReSharperToolKit.Modules;
@@ -40,8 +42,23 @@ namespace ReSharperToolKit.Actions
         /// <summary>
         /// Constructor
         /// </summary>
-        public SelectedClassWrapper(CSharpElementFactory pFactory, ICSharpFile pFile, IClassDeclaration pDecl)
+        public SelectedClassWrapper([NotNull] CSharpElementFactory pFactory, 
+                                    [NotNull] ICSharpFile pFile,
+                                    [NotNull] IClassDeclaration pDecl)
         {
+            if (pFactory == null)
+            {
+                throw new ArgumentNullException("pFactory");
+            }
+            if (pFile == null)
+            {
+                throw new ArgumentNullException("pFile");
+            }
+            if (pDecl == null)
+            {
+                throw new ArgumentNullException("pDecl");
+            }
+
             Decl = pDecl;
 
             iNamingService namingService = Locator.Get<iNamingService>();

@@ -1,4 +1,6 @@
-﻿using JetBrains.ReSharper.Psi.CSharp;
+﻿using System;
+using JetBrains.Annotations;
+using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 
 namespace ReSharperToolKit.Editors.Impl
@@ -18,8 +20,16 @@ namespace ReSharperToolKit.Editors.Impl
         /// <summary>
         /// Constructor
         /// </summary>
-        public ClassEditor(CSharpElementFactory pFactory, IClassDeclaration pClass)
+        public ClassEditor([NotNull] CSharpElementFactory pFactory, [NotNull] IClassDeclaration pClass)
         {
+            if (pFactory == null)
+            {
+                throw new ArgumentNullException("pFactory");
+            }
+            if (pClass == null)
+            {
+                throw new ArgumentNullException("pClass");
+            }
             _class = pClass;
             _factory = pFactory;
         }
@@ -28,8 +38,12 @@ namespace ReSharperToolKit.Editors.Impl
         /// Adds a new attribute to the class declaration.
         /// </summary>
         /// <param name="pAttribute">The attribute as source code excluding the []</param>
-        public void AddAttribute(string pAttribute)
+        public void AddAttribute([NotNull] string pAttribute)
         {
+            if (pAttribute == null)
+            {
+                throw new ArgumentNullException("pAttribute");
+            }
             ICSharpTypeMemberDeclaration tmpClass =
                 _factory.CreateTypeMemberDeclaration(string.Format("[{0}] class C{{}}", pAttribute));
             _class.AddAttributeAfter(tmpClass.Attributes[0], null);

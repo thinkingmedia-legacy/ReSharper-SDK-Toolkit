@@ -1,4 +1,6 @@
-﻿using JetBrains.ReSharper.Psi.CSharp.Parsing;
+﻿using System;
+using JetBrains.Annotations;
+using JetBrains.ReSharper.Psi.CSharp.Parsing;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using JetBrains.ReSharper.Psi.Parsing;
 using JetBrains.ReSharper.Psi.Tree;
@@ -10,8 +12,13 @@ namespace ReSharperToolKit.Modules.Services.Impl
         /// <summary>
         /// Checks if the node is an identifier for a class, and returns the declaration if it is.
         /// </summary>
-        public IClassDeclaration isClassIdentifier(ITreeNode pNode)
+        public IClassDeclaration isClassIdentifier([NotNull] ITreeNode pNode)
         {
+            if (pNode == null)
+            {
+                throw new ArgumentNullException("pNode");
+            }
+
             return isType(pNode, CSharpTokenType.IDENTIFIER)
                 ? pNode.Parent as IClassDeclaration
                 : null;
@@ -20,8 +27,12 @@ namespace ReSharperToolKit.Modules.Services.Impl
         /// <summary>
         /// Checks if a node is a type of C# token.
         /// </summary>
-        public bool isType(ITreeNode pNode, TokenNodeType pToken)
+        public bool isType([CanBeNull] ITreeNode pNode, [NotNull] TokenNodeType pToken)
         {
+            if (pToken == null)
+            {
+                throw new ArgumentNullException("pToken");
+            }
             return pNode != null && pNode.NodeType == pToken;
         }
     }

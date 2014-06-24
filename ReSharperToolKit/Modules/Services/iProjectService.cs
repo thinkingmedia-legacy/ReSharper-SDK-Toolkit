@@ -14,6 +14,11 @@ namespace ReSharperToolKit.Modules.Services
         T getFileAs<T>(IProjectFile pFile) where T : class, IFile;
 
         /// <summary>
+        /// Provides access to the project file via a namespace pattern. If the file does not exist a new empty file is created.
+        /// </summary>
+        IProjectFile getFileOrCreate(IProject pProject, string pNameSpace, string pFileNameWithExtension);
+
+        /// <summary>
         /// Finds or creates a folder using a namespace.
         /// </summary>
         IProjectFolder getFolder(IProject pProject, string pNameSpace);

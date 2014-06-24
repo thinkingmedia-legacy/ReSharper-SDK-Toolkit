@@ -1,4 +1,6 @@
-﻿using JetBrains.ReSharper.Psi.CSharp;
+﻿using System;
+using JetBrains.Annotations;
+using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
 using ReSharperToolKit.Editors;
 using ReSharperToolKit.Editors.Impl;
@@ -12,8 +14,17 @@ namespace ReSharperToolKit.Modules.Factories.Impl
         /// </summary>
         /// <param name="pFactory"></param>
         /// <param name="pClass"></param>
-        public iClassEditor CreateClassEditor(CSharpElementFactory pFactory, IClassDeclaration pClass)
+        public iClassEditor CreateClassEditor([NotNull] CSharpElementFactory pFactory,
+                                              [NotNull] IClassDeclaration pClass)
         {
+            if (pFactory == null)
+            {
+                throw new ArgumentNullException("pFactory");
+            }
+            if (pClass == null)
+            {
+                throw new ArgumentNullException("pClass");
+            }
             return new ClassEditor(pFactory, pClass);
         }
 
@@ -22,8 +33,16 @@ namespace ReSharperToolKit.Modules.Factories.Impl
         /// </summary>
         /// <param name="pFactory"></param>
         /// <param name="pFile"></param>
-        public iSourceEditor CreateSourceEditor(CSharpElementFactory pFactory, ICSharpFile pFile)
+        public iSourceEditor CreateSourceEditor([NotNull] CSharpElementFactory pFactory, [NotNull] ICSharpFile pFile)
         {
+            if (pFactory == null)
+            {
+                throw new ArgumentNullException("pFactory");
+            }
+            if (pFile == null)
+            {
+                throw new ArgumentNullException("pFile");
+            }
             return new SourceEditor(pFactory, pFile);
         }
     }
