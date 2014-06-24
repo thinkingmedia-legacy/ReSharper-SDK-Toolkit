@@ -53,6 +53,25 @@ namespace ReSharperToolKit.Editors
         }
 
         /// <summary>
+        /// Checks if a using declaration already exists in the file.
+        /// </summary>
+        public bool HasUsing([NotNull] string pNameSpace)
+        {
+            if (pNameSpace == null)
+            {
+                throw new ArgumentNullException("pNameSpace");
+            }
+            foreach (IUsingDirective use in _file.Imports)
+            {
+                if (use.ImportedSymbolName.QualifiedName == pNameSpace)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Adds a using declaration to the using list.
         /// </summary>
         public void AddUsing([NotNull] string pNameSpace)
@@ -61,8 +80,11 @@ namespace ReSharperToolKit.Editors
             {
                 throw new ArgumentNullException("pNameSpace");
             }
-            IUsingDirective directive = _factory.CreateUsingDirective(string.Format("using {0}", pNameSpace));
-            _file.AddImport(directive);
+            if (!HasUsing(pNameSpace))
+            {
+                IUsingDirective directive = _factory.CreateUsingDirective(string.Format("using {0}", pNameSpace));
+                _file.AddImport(directive);
+            }
         }
     }
 }
