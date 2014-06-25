@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Actions\ClassActionBase.cs" />
     <Compile Include="Actions\SelectedClassWrapper.cs" />
+    <Compile Include="Daemons\GenericDaemonStage.cs" />
+    <Compile Include="Daemons\GenericDaemonProcessor.cs" />
     <Compile Include="Editors\ClassEditor.cs" />
     <Compile Include="Editors\SourceEditor.cs" />
     <Compile Include="Exceptions\IsFalseException.cs" />
