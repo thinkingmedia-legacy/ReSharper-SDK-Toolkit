@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -32,6 +33,19 @@ namespace ReSharperToolKit.Editors
             }
             _class = pClass;
             _factory = pFactory;
+        }
+
+        /// <summary>
+        /// Checks if a class has a custom attribute assigned to it.
+        /// </summary>
+        public bool HasAttribute([NotNull] Type pAttributeType)
+        {
+            if (pAttributeType == null)
+            {
+                throw new ArgumentNullException("pAttributeType");
+            }
+
+            return Enumerable.Any(_class.Attributes, pAttr=>pAttr.Name.QualifiedName + "Attribute" == pAttributeType.Name);
         }
 
         /// <summary>

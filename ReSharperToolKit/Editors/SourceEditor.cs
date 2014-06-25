@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -61,14 +62,7 @@ namespace ReSharperToolKit.Editors
             {
                 throw new ArgumentNullException("pNameSpace");
             }
-            foreach (IUsingDirective use in _file.Imports)
-            {
-                if (use.ImportedSymbolName.QualifiedName == pNameSpace)
-                {
-                    return true;
-                }
-            }
-            return false;
+            return Enumerable.Any(_file.Imports, pUse=>pUse.ImportedSymbolName.QualifiedName == pNameSpace);
         }
 
         /// <summary>
