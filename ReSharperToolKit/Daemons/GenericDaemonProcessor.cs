@@ -49,7 +49,14 @@ namespace ReSharperToolKit.Daemons
                 return;
             }
 
-            file.ProcessChildren<TNodeType>(pNode=>highlights.AddRange(getHighlights(file, pNode)));
+            file.ProcessChildren<TNodeType>(pNode=>
+                                            {
+                                                IEnumerable<HighlightingInfo> infos = getHighlights(file, pNode);
+                                                if (infos != null)
+                                                {
+                                                    highlights.AddRange(infos);
+                                                }
+                                            });
 
             if (highlights.Count == 0)
             {

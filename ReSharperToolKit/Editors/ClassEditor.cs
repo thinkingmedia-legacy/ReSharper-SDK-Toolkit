@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi.CSharp;
@@ -17,6 +18,17 @@ namespace ReSharperToolKit.Editors
         /// C sharp element factory
         /// </summary>
         private readonly CSharpElementFactory _factory;
+
+        /// <summary>
+        /// Finds all the attributes assigned to a class using the attributes type.
+        /// </summary>
+        public static IEnumerable<IAttribute> getAttributes<TAttributeType>(IClassDeclaration pClass)
+            where TAttributeType : Attribute
+        {
+            return
+                pClass.Attributes.Where(
+                    pAttr => pAttr.Name.QualifiedName + "Attribute" == typeof(TAttributeType).Name);
+        }
 
         /// <summary>
         /// Constructor
