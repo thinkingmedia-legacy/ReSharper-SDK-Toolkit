@@ -34,10 +34,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -45,21 +41,19 @@
     <Compile Include="Actions\SelectedClassWrapper.cs" />
     <Compile Include="Daemons\GenericDaemonStage.cs" />
     <Compile Include="Daemons\GenericDaemonProcessor.cs" />
-    <Compile Include="Editors\ClassEditor.cs" />
-    <Compile Include="Editors\SourceEditor.cs" />
+    <Compile Include="Services\ClassService.cs" />
+    <Compile Include="Services\SourceFileService.cs" />
     <Compile Include="Exceptions\IsFalseException.cs" />
     <Compile Include="Exceptions\ProjectNotFoundException.cs" />
     <Compile Include="Exceptions\ThrowIf.cs" />
     <Compile Include="Services\ProjectService.cs" />
     <Compile Include="Services\ResourceService.cs" />
-    <Compile Include="Services\StandardNamingPattern.cs" />
     <Compile Include="Services\TreeNodeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

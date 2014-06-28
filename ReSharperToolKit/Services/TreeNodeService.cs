@@ -7,12 +7,12 @@ using JetBrains.ReSharper.Psi.Tree;
 
 namespace ReSharperToolKit.Services
 {
-    public class TreeNodeService
+    public static class TreeNodeService
     {
         /// <summary>
         /// Checks if the node is an identifier for a class, and returns the declaration if it is.
         /// </summary>
-        public IClassDeclaration isClassIdentifier([NotNull] ITreeNode pNode)
+        public static IClassDeclaration isClassIdentifier([NotNull] ITreeNode pNode)
         {
             if (pNode == null)
             {
@@ -27,7 +27,7 @@ namespace ReSharperToolKit.Services
         /// <summary>
         /// Checks if a node is a type of C# token.
         /// </summary>
-        public bool isType([CanBeNull] ITreeNode pNode, [NotNull] TokenNodeType pToken)
+        public static bool isType([CanBeNull] ITreeNode pNode, [NotNull] TokenNodeType pToken)
         {
             if (pToken == null)
             {

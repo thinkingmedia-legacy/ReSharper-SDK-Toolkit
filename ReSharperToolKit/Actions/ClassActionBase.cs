@@ -1,5 +1,4 @@
-﻿using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.CSharp.Bulbs;
+﻿using JetBrains.ReSharper.Feature.Services.CSharp.Bulbs;
 using JetBrains.ReSharper.Intentions.Extensibility;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
@@ -18,11 +17,6 @@ namespace ReSharperToolKit.Actions
         protected readonly ICSharpContextActionDataProvider Provider;
 
         /// <summary>
-        /// Services related to the node tree.
-        /// </summary>
-        private readonly TreeNodeService _treeNodeService;
-
-        /// <summary>
         /// The currently selected class.
         /// </summary>
         protected SelectedClassWrapper SelectedClass;
@@ -34,8 +28,6 @@ namespace ReSharperToolKit.Actions
         {
             Provider = pProvider;
             SelectedClass = null;
-
-            _treeNodeService = new TreeNodeService();
         }
 
         /// <summary>
@@ -54,7 +46,7 @@ namespace ReSharperToolKit.Actions
                 ITreeNode node = ThrowIf.Null(Provider.SelectedElement);
                 CSharpElementFactory factory = CSharpElementFactory.GetInstance(Provider.PsiModule);
 
-                IClassDeclaration decl = ThrowIf.Null(_treeNodeService.isClassIdentifier(node));
+                IClassDeclaration decl = ThrowIf.Null(TreeNodeService.isClassIdentifier(node));
                 SelectedClass = new SelectedClassWrapper(factory, Provider.PsiFile, decl);
 
                 ThrowIf.False(isAvailableForClass(pCache));

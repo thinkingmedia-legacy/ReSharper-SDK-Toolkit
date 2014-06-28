@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi.CSharp;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using ReSharperToolKit.Editors;
 
 namespace ReSharperToolKit.Actions
 {
@@ -11,11 +10,6 @@ namespace ReSharperToolKit.Actions
     /// </summary>
     public class SelectedClassWrapper
     {
-        /// <summary>
-        /// Used to edit the current class.
-        /// </summary>
-        public readonly ClassEditor ClassEditor;
-
         /// <summary>
         /// The identifier for the current class.
         /// </summary>
@@ -27,14 +21,9 @@ namespace ReSharperToolKit.Actions
         public readonly IClassDeclaration Decl;
 
         /// <summary>
-        /// Used to edit the C source file.
-        /// </summary>
-        public readonly SourceEditor SourceEditor;
-
-        /// <summary>
         /// Constructor
         /// </summary>
-        public SelectedClassWrapper([NotNull] CSharpElementFactory pFactory, 
+        public SelectedClassWrapper([NotNull] CSharpElementFactory pFactory,
                                     [NotNull] ICSharpFile pFile,
                                     [NotNull] IClassDeclaration pDecl)
         {
@@ -54,9 +43,6 @@ namespace ReSharperToolKit.Actions
             Decl = pDecl;
 
             ClassName = Decl.NameIdentifier.Name;
-
-            ClassEditor = new ClassEditor(pFactory, Decl);
-            SourceEditor = new SourceEditor(pFactory, pFile);
         }
     }
 }
