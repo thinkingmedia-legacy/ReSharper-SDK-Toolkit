@@ -91,9 +91,17 @@ namespace ReSharperToolKit.Services
             {
                 throw new ArgumentNullException("pFilename");
             }
-            FileSystemPath path = pProject.ProjectFileLocation;
-            string file = path.Directory.FullPath + @"\" + pNameSpc.Replace(".", @"\") + @"\" + pFilename + ".cs";
+            string file = getFileName(pProject, pNameSpc, pFilename);
             return File.Exists(file);
+        }
+
+        /// <summary>
+        /// Returns the disk location of a project file.
+        /// </summary>
+        public static string getFileName(IProject pProject, string pNameSpc, string pFilename)
+        {
+            FileSystemPath path = pProject.ProjectFileLocation;
+            return path.Directory.FullPath + @"\" + pNameSpc.Replace(".", @"\") + @"\" + pFilename + ".cs";
         }
 
         /// <summary>

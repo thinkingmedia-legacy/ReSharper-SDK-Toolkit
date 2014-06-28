@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using JetBrains.ReSharper.Psi.CSharp;
-using JetBrains.ReSharper.Psi.CSharp.Parsing;
 using JetBrains.ReSharper.Psi.CSharp.Tree;
-using JetBrains.ReSharper.Psi.Parsing;
 
 namespace ReSharperToolKit.Services
 {
@@ -70,30 +68,6 @@ namespace ReSharperToolKit.Services
                 throw new ArgumentNullException("pType");
             }
             return pType.OwnerNamespaceDeclaration.QualifiedName;
-        }
-
-        /// <summary>
-        /// Checks that a class can be tested.
-        /// </summary>
-        public static bool isSafelyPublic([CanBeNull] IModifiersList pModifiers)
-        {
-            if (pModifiers == null)
-            {
-                return false;
-            }
-
-            TokenNodeType[] mustHave = {CSharpTokenType.PUBLIC_KEYWORD};
-            TokenNodeType[] mustNotHave =
-            {
-                CSharpTokenType.ABSTRACT_KEYWORD,
-                CSharpTokenType.INTERNAL_KEYWORD,
-                CSharpTokenType.PARTIAL_KEYWORD
-            };
-
-            List<TokenNodeType> types = pModifiers.Modifiers.Select(pMod=>pMod.GetTokenType()).ToList();
-
-            return !types.Any(pTypeB=>mustNotHave.Any(pTypeA=>pTypeA == pTypeB))
-                   && types.Any(pTypeB=>mustHave.Any(pTypeA=>pTypeA == pTypeB));
         }
     }
 }
